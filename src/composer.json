@@ -1,0 +1,17 @@
+{
+    "name": "hp/src",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "abdessamad",
+            "email": "wourkout123@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

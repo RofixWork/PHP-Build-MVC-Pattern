@@ -2,11 +2,15 @@
 declare(strict_types=1);
 namespace App;
 
+use App\DI\Container;
 use App\Exception\NotFoundException;
 
 class Router
 {
     private array $routes = [];
+    public function __construct(private Container $container)
+    {
+    }
 
     public function register(string $requestMethod, string $route, callable|array $action) : self
     {
@@ -54,7 +58,7 @@ class Router
 
             if(class_exists($class))
             {
-                $class = new $class();
+                $class = $this->container->get($class);
 
                 if(method_exists($class, $method))
                 {
@@ -66,8 +70,13 @@ class Router
         throw new NotFoundException();
     }
 
-    public function printRoutes() : void
+    public function printRoutes() : array
     {
-         var_dump($this->routes);
+         return $this->routes;
+    }
+
+    public function isEmpty() : array
+    {
+        return count($this->routes) ? $this->routes : [];
     }
 }

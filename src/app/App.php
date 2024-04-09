@@ -2,6 +2,11 @@
 
 namespace App;
 
+use App\DI\Container;
+use App\DI\DatabaseService;
+use App\DI\EmailService;
+use App\DI\UserService;
+
 class App
 {
     private static DB $pdo;

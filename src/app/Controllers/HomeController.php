@@ -14,7 +14,6 @@ class HomeController
 {
     public function index() : View
     {
-        $db = App::db();
 //            $email = $_GET["email"];
 //            $query = "SELECT * FROM users where email = :email;";
 //
@@ -58,39 +57,39 @@ class HomeController
 //            var_dump($user->fetch());
 
 //            TRANSACTION IN PDO
-            $email = $_GET["email"];
-            $full_name = explode("@", $email)[0];
-            $invId = null;
-            $user = new User();
-            $invoice = new Invoice();
-
-            try {
-                $db->beginTransaction();
-                $userId = $user->create($email, $full_name);
-
-                $invId = $invoice->create(200, $userId);
-                $db->commit();
-            } catch (\Throwable $ex)
-            {
-                var_dump($ex->getMessage());
-                if($db->inTransaction())
-                {
-                    $db->rollBack();
-                }
-            }
-
+//            $email = $_GET["email"];
+//            $full_name = explode("@", $email)[0];
+//            $invId = null;
+//            $user = new User();
+//            $invoice = new Invoice();
 //
-//            $getUserInvoice = $db->prepare("SELECT * FROM users as us JOIN invoices as inv ON us.id = inv.user_id and us.email = ?");
+//            try {
+//                $db->beginTransaction();
+//                $userId = $user->create($email, $full_name);
 //
-//            $getUserInvoice->execute([$email]);
+//                $invId = $invoice->create(200, $userId);
+//                $db->commit();
+//            } catch (\Throwable $ex)
+//            {
+//                var_dump($ex->getMessage());
+//                if($db->inTransaction())
+//                {
+//                    $db->rollBack();
+//                }
+//            }
+//
+////
+////            $getUserInvoice = $db->prepare("SELECT * FROM users as us JOIN invoices as inv ON us.id = inv.user_id and us.email = ?");
+////
+////            $getUserInvoice->execute([$email]);
+//
+////            echo "<pre>";
+////            var_dump($getUserInvoice->fetch());
+////            echo "</pre>";
+//
+//        var_dump($invoice->find($invId)['full_name']);
 
-//            echo "<pre>";
-//            var_dump($getUserInvoice->fetch());
-//            echo "</pre>";
-
-        var_dump($invoice->find($invId)['full_name']);
-
-        return View::make("home/index", ["invoice" => $invoice->find($invId)]);
+        return View::make("home/index", []);
     }
 
     public function upload()

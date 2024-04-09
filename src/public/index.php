@@ -20,7 +20,7 @@ $router->get("/", [App\Controllers\HomeController::class, "index"])
     ->post('/invoice/store', [\App\Controllers\InvoiceController::class, 'store'])
     ->get('/test', [\App\Controllers\TestController::class, 'index']);
 
-(new \App\App($router, [
+(new \App\App($container, $router, [
     "uri" => $_SERVER["REQUEST_URI"],
     "method" => $_SERVER["REQUEST_METHOD"],
 ], new \App\Config($_ENV)))->run();

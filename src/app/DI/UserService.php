@@ -4,7 +4,7 @@ namespace App\DI;
 
 class UserService
 {
-    public function __construct(private EmailService $emailService, private DatabaseService $databaseService)
+    public function __construct(private IEmailService $emailService, private DatabaseService $databaseService)
     {
         echo static::class;
     }
